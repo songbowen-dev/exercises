@@ -1,5 +1,7 @@
 package songbowen.exercises;
 
+import java.util.Arrays;
+
 /**
  * 最小堆
  */
@@ -7,8 +9,18 @@ public class MiniHeap {
     private int[] heapArray;
     private int currentSize;
 
-    public MiniHeap(int size) {
-        heapArray = new int[size];
+    private void buildHeap() {
+        int pos = (currentSize - 1) / 2;
+        while (pos >= 0) {
+            siftDown(pos);
+            pos--;
+        }
+    }
+
+    public MiniHeap(int[] heapArray, int currentSize) {
+        this.heapArray = heapArray;
+        this.currentSize = currentSize;
+        buildHeap();
     }
 
     /**
@@ -137,6 +149,24 @@ public class MiniHeap {
     public void removeMin() {
         heapArray[0] = heapArray[currentSize - 1];
         siftDown(0);
+    }
+
+    /**
+     * 堆排序
+     * <p>
+     * 时间复杂度: O(nlog(n)), 空间复杂度: O(1)
+     */
+    public static void main(String[] args) {
+        int[] data = {15, 69, 12, 3, 6, 9, 4, 8, 14, 55};
+        MiniHeap miniHeap = new MiniHeap(data, data.length);
+        while (miniHeap.currentSize > 0) {
+            int tmp = data[0];
+            data[0] = data[miniHeap.currentSize - 1];
+            data[miniHeap.currentSize - 1] = tmp;
+            miniHeap.currentSize--;
+            miniHeap.siftDown(0);
+        }
+        System.out.println(Arrays.toString(data));
     }
 
 
