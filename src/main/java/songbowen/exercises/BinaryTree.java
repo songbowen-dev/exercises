@@ -197,9 +197,30 @@ public class BinaryTree {
         return root;
     }
 
+    /**
+     * 查找二叉树子节点的最近共同父节点
+     */
+    static Node findFather(Node root, int p, int q) {
+        if (root == null) {
+            return null;
+        }
+        if (root.value == p || root.value == q) {
+            return root;
+        }
+        Node leftResult = findFather(root.lefChild, p, q);
+        Node rightResult = findFather(root.rightChild, p, q);
+        if (leftResult != null && rightResult != null) {
+            return root;
+        }
+        return leftResult != null ? leftResult : rightResult;
+
+    }
+
+
     public static void main(String[] args) {
         Node root = genTestNode();
-        depthOrderTravel(root);
+        Node father = findFather(root, 9, 4);
+        System.out.println(father.value);
     }
 
 

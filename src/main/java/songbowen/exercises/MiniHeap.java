@@ -6,8 +6,8 @@ import java.util.Arrays;
  * 最小堆
  */
 public class MiniHeap {
-    private int[] heapArray;
-    private int currentSize;
+    int[] heapArray;
+    int currentSize;
 
     private void buildHeap() {
         int pos = (currentSize - 1) / 2;
@@ -76,7 +76,7 @@ public class MiniHeap {
     /**
      * 从pos开始向下调整使序列成为堆
      */
-    private void siftDown(int pos) {
+    void siftDown(int pos) {
         if (isLeaf(pos)) {
             return;
         }
