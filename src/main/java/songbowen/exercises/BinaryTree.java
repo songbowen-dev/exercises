@@ -213,7 +213,6 @@ public class BinaryTree {
             return root;
         }
         return leftResult != null ? leftResult : rightResult;
-
     }
 
 
